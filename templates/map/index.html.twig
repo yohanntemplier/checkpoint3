@@ -3,15 +3,15 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/map.css') }}">
 {% endblock %}
-{% block body %}
 
-    <div class="container-fluid ">
+{% block body %}
+    <div class="container-fluid">
         <h1>Map</h1>
         <div class="row">
             <div class="col-xs-10">
                 <div class="map">
                     {% if map is empty %}
-                        <div class="alert alert-warning">You are still on the firm ground, you have to loat fixtures first ! </div>
+                        <div class="alert alert-warning">You are still on the firm ground, you have to loat fixtures first !</div>
                     {% endif %}
                     {% for y in 0..6 %}
                         <div class="row">
