@@ -37,11 +37,11 @@
                 <ol class="instructions">
                     <li>
                         Hello ship's boy, <strong>read carefully all instructions</strong> below before starting to code ;)
-                        <br>
+                        <br/>
                         Each step is relatively independent, do not hesitate to move on to the next if you stay blocked
                         too long on one step.
                         Also, remember you can request assistance to your former ;)
-                        <br>
+                        <br/>
                         You have to push your code on this project repository, with your city, first name and
                         last name as a branch name (e.g. TORTUGA_JACK_SPARROW). Furthermore, think about atomic commits!
                     </li>
@@ -52,14 +52,14 @@
                         Tile has coordinates (x, y) and a type (sea, port, island). The Black Pearl (one Boat entity) also has
                         coordinates, so he can be displayed on a chosen tile of the map.
 
-                        <p>Right now, the database is empty (no boat and no tile): Jack is still in the firm ground! <br>
+                        <p>Right now, the database is empty (no boat and no tile): Jack is still in the firm ground! <br/>
                             First of all, you have to fill the database. Fortunately, we have fixtures ! Launch
                             <code>php bin/console doctrine:fixtures:load</code>.
                             Answer <code>y</code> at the question and that's it, you have data.
                         </p>
 
-                        <blockquote>
-                            On the map, you can move the boat with the moveBoatAction() method of the BoatController (it already exists).
+                        <blockquote class="pl-4">
+                            On the map, you can move the boat with the <code>moveBoatAction()</code> method of the BoatController (it already exists).
                             As you can see in the code, you just have to use the route <em>/boat/move/x/y</em> (x and y should be coordinates)
                             and the Black Pearl will go on the right tile.
                             Then, this method redirects the browser directly on the map.
@@ -67,21 +67,21 @@
                     </li>
 
                     <li>
-                        <em>moveBoat()</em> method is cool, however, it is more like a teleport than a real move...<br>
-                        In BoatController, create a moveDirection() method which takes a <em>direction</em> as parameter.
+                        <code>moveBoat()</code> method is cool, however, it is more like a teleport than a real move...<br/>
+                        In BoatController, create a <code>moveDirection()</code> method which takes a <em>direction</em> as parameter.
                         This direction can only be one of these four strings : 'N', 'S', 'E' or 'W'. For example, <em>/boat/move/A</em> must not work (Symfony will generate a 404 error).
                         Of course, the method should move the boat in the right direction.
                         After it, redirect the browser on <em>/map</em>.
-                        <br>
+                        <br/>
                         <span class="hint">Hint: </span> Add four links on the map view to allow the user to move on 4 possible ways.
-                        Put your buttons on the div class "navigation" (it already exists).<br>
-                        <span class="hint">Hint2: </span>If you do not succeed to implement moveDirection(), go ahead and use the already existing moveBoat() method for the following steps instead of moveDirection().
+                        Put your buttons on the div class "navigation" (it already exists).<br/>
+                        <span class="hint">Hint2: </span>If you do not succeed to implement <code>moveDirection()</code>, go ahead and use the already existing moveBoat() method for the following steps instead of moveDirection().
                     </li>
 
                     <li>
                         Right now, if you move your boat on a nonexistent tile, the boat just disappears on there is no error message.
                         To prevent Jack to getting lost, you will have to prevent moving outside the map.
-                        Create a *MapManager* service, in the /src/App/Services folder, and create a tileExists() method
+                        Create a <em>MapManager</em> service, in the <em>/src/App/Services</em> folder, and create a <code>tileExists()</code> method
                         (it takes coordinates x and y as argument, and return a boolean). It should test if the tile with these coordinates exists or not.
                         <br/>
                         <span class="hint">Hint: </span>Use TileRepository in your service.
@@ -89,14 +89,14 @@
 
 
                     <li>
-                        Use this new service and this new method in the moveDirection() method, to display an error (and prevent the boat to move)
+                        Use this new service and this new method in the <code>moveDirection()</code> method, to display an error (and prevent the boat to move)
                         if the destination tile does not exist.
                         <br/>
-                        <span class="hint">Hint: </span>Use flash messages for the error message. The display of flash message is already implemented in base.html.twig.
+                        <span class="hint">Hint: </span>Use flash messages for the error message. The display of flash message is already implemented in <em>base.html.twig</em>.
                     </li>
 
                     <li>
-                        In the map/index.html.twig file, in the <code>div</code> with the class "infos", add the following information about the boat :
+                        In the <em>map/index.html.twig</em> file, in the <code>div</code> with the class "infos", add the following information about the boat :
                         <ul>
                             <li>its coordinates (x, y)</li>
                             <li>type of the tile where the boat actually is</li>
@@ -109,23 +109,23 @@
                     </li>
 
                     <li>
-                        In MapManager, create a getRandomIsland() method. It should return a <strong>random</strong> Tile with <strong>island</strong> type.
+                        In MapManager, create a <code>getRandomIsland()</code> method. It should return a <strong>random</strong> Tile with <strong>island</strong> type.
                         To do that, you should first get all island tiles in an array, then return one tile randomly (in php).
                         <br/>
                         <span class="hint">Hint: </span>Look at <a href="https://secure.php.net/manual/fr/function.array-rand.php">array_rand()</a> function.
                     </li>
 
                     <li>
-                        In MapController, create a startAction() method (with a <em>/start</em> route) which launch a new game.
+                        In MapController, create a <code>startAction()</code> method (with a <em>/start</em> route) which launch a new game.
                         The method must reset boat coordinates to 0,0. It also must put the treasure on a random island.
                         Finally, it will redirect on <em>/map</em>.
-                        <br>
+                        <br/>
                         <span class="hint">Hint: </span>Warning, only one treasure can be on the map, don't forget to remove it
                         from the map <strong>before</strong> put one in another tile ;)
                     </li>
 
                     <li>
-                        On MapManager, create checkTreasure() method. The method take a Boat object as parameter, and should check that this boat is on the tile with the treasure and return true or false.
+                        On MapManager, create <code>checkTreasure()</code> method. The method take a Boat object as parameter, and should check that this boat is on the tile with the treasure and return true or false.
                     </li>
 
                     <li>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Tile;
 use App\Repository\BoatRepository;
@@ -12,7 +13,7 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-    public function displayMapAction(BoatRepository $boatRepository)
+    public function displayMapAction(BoatRepository $boatRepository) :Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();

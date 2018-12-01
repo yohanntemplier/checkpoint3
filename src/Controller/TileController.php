@@ -79,7 +79,7 @@ class TileController extends AbstractController
      */
     public function delete(Request $request, Tile $tile): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tile->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $tile->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($tile);
             $em->flush();
