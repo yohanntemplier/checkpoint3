@@ -47,19 +47,19 @@
                     </li>
 
                     <li>
+                        Right now, the database, which contains information about the map and the boat, is empty : Jack is still in the firm ground! <br/>
+                        First of all, you have to fill the database. Fortunately, we have fixtures ! Launch
+                        <code>php bin/console doctrine:fixtures:load</code>.
+                        Answer <code>y</code> at the question and that's it, you have data.
+                    </li>
+                    <li>
                         Look at the navbar, there is a <a href="{{ path('map') }}">Map</a> link (/map url). The
                         Black Pearl can navigate on this map, which is build with Tiles (Tile entity). Each
                         Tile has coordinates (x, y) and a type (sea, port, island). The Black Pearl (one Boat entity) also has
                         coordinates, so he can be displayed on a chosen tile of the map.
 
-                        <p>Right now, the database is empty (no boat and no tile): Jack is still in the firm ground! <br/>
-                            First of all, you have to fill the database. Fortunately, we have fixtures ! Launch
-                            <code>php bin/console doctrine:fixtures:load</code>.
-                            Answer <code>y</code> at the question and that's it, you have data.
-                        </p>
-
                         <blockquote class="pl-4">
-                            On the map, you can move the boat with the <code>moveBoatAction()</code> method of the BoatController (it already exists).
+                            On the map, you can move the boat with the <code>moveBoat()</code> method of the BoatController (it already exists).
                             As you can see in the code, you just have to use the route <em>/boat/move/x/y</em> (x and y should be coordinates)
                             and the Black Pearl will go on the right tile.
                             Then, this method redirects the browser directly on the map.
@@ -81,7 +81,7 @@
                     <li>
                         Right now, if you move your boat on a nonexistent tile, the boat just disappears on there is no error message.
                         To prevent Jack to getting lost, you will have to prevent moving outside the map.
-                        Create a <em>MapManager</em> service, in the <em>/src/App/Services</em> folder, and create a <code>tileExists()</code> method
+                        Create a <em>MapManager</em> service, in the <em>src/Services</em> folder, and create a <code>tileExists()</code> method
                         (it takes coordinates x and y as argument, and return a boolean). It should test if the tile with these coordinates exists or not.
                         <br/>
                         <span class="hint">Hint: </span>Use TileRepository in your service.
@@ -104,8 +104,8 @@
                     </li>
 
                     <li>
-                        Add the property <code>$hasTreasure</code> (a boolean) on Tile entity. It will allow to know if the treasure is on a tile or not.
-                        Don't forget to create getter / setter and to update your database.
+                        Add the property <code>$hasTreasure</code> (a boolean) on Tile entity. It will be <em>not nullable</em> and the default value will be <em>false</em>. It will allow to know if the treasure is on a tile or not.
+                        Don't forget to create getter / setter and to update your database. Then, use migration commands to update your database.
                     </li>
 
                     <li>
@@ -116,7 +116,7 @@
                     </li>
 
                     <li>
-                        In MapController, create a <code>startAction()</code> method (with a <em>/start</em> route) which launch a new game.
+                        In MapController, create a <code>start()</code> method (with a <em>/start</em> route) which launch a new game.
                         The method must reset boat coordinates to 0,0. It also must put the treasure on a random island.
                         Finally, it will redirect on <em>/map</em>.
                         <br/>

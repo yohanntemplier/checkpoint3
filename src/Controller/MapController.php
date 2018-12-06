@@ -13,7 +13,7 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-    public function displayMapAction(BoatRepository $boatRepository) :Response
+    public function displayMap(BoatRepository $boatRepository) :Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();

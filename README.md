@@ -27,8 +27,13 @@ $ bin/console d:d:c (create 'checkpoint3' DB)
 ```
 > Reminder : Don't use composer update to avoid problem
 
+> Assets are directly into *public/* directory, **we will not use** Webpack with this checkpoint
+
+
 Usage
 -----
+
+Launch the server with command below and follow instructions on homepage `/`;
 
 ```bash
 $ bin/console s:r
