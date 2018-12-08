@@ -16,11 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BoatController extends AbstractController
 {
+
     /**
      * Move the boat to coord x,y
      * @Route("/move/{x}/{y}", name="moveBoat", requirements={"x"="\d+", "y"="\d+"}))
      */
-    public function moveBoatAction(int $x, int $y, BoatRepository $boatRepository, EntityManagerInterface $em)
+    public function moveBoat(int $x, int $y, BoatRepository $boatRepository, EntityManagerInterface $em) :Response
     {
         $boat = $boatRepository->findOneBy([]);
         $boat->setCoordX($x);
@@ -96,7 +97,7 @@ class BoatController extends AbstractController
      */
     public function delete(Request $request, Boat $boat): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$boat->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $boat->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($boat);
             $em->flush();

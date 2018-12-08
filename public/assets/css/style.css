@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-repeat: no-repeat;
     padding: 7em;
     padding-top: 6em;
-    font-size: 1.4em;
+    font-size: 14pt;
     height: 800px;
 }
 
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-size: cover;
     background-repeat: no-repeat;
     padding: 2em;
-    font-size: 1.4em;
+    font-size: 16pt;
     height: 1250px;
     color: white;
     background-attachment: fixed;
