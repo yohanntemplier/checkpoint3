@@ -24,6 +24,7 @@ Set `db_name` to **checkpoint3** DB.
 ```bash
 $ composer install
 $ bin/console d:d:c (create 'checkpoint3' DB)
+$ bin/console d:m:m (execute migrations and create tables)
 ```
 > Reminder : Don't use composer update to avoid problem
 
