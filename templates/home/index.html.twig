@@ -68,8 +68,8 @@
 
                     <li>
                         <code>moveBoat()</code> method is cool, however, it is more like a teleport than a real move...<br/>
-                        In BoatController, create a <code>moveDirection()</code> method which takes a <em>direction</em> as parameter.
-                        This direction can only be one of these four strings : 'N', 'S', 'E' or 'W'. For example, <em>/boat/move/A</em> must not work (Symfony will generate a 404 error).
+                        In BoatController, create a <code>moveDirection()</code> method on <em>/boat/direction</em> route which takes a <em>direction</em> as parameter.
+                        This direction can only be one of these four strings : 'N', 'S', 'E' or 'W'. For example, <em>/boat/direction/A</em> must not work (Symfony will generate a 404 error).
                         Of course, the method should move the boat in the right direction.
                         After it, redirect the browser on <em>/map</em>.
                         <br/>
