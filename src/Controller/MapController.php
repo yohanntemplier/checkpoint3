@@ -17,16 +17,14 @@ class MapController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
-
         foreach ($tiles as $tile) {
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
-
         $boat = $boatRepository->findOneBy([]);
-
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
             'boat' => $boat,
         ]);
     }
+
 }

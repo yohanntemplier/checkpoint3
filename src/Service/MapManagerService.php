@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Repository\TileRepository;
+use App\Entity\Tile;
 
 class MapManagerService
 {
@@ -20,5 +21,10 @@ class MapManagerService
         } else {
             return false;
         }
+    }
+
+    public function getRandomIsland(array $islands) : Tile
+    {
+        return $islands[array_rand($islands)];
     }
 }
