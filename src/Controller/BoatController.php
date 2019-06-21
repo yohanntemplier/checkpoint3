@@ -61,7 +61,7 @@ class BoatController extends AbstractController
                 break;
             case "E":
                 if ($mapManagerService->tileExists($boat->getCoordX() + 1, $boat->getCoordY())){
-                    $boat->setCoordX($boat->getCoordX() - 1);
+                    $boat->setCoordX($boat->getCoordX() + 1);
                 } else {
                     $this->addFlash('error ', "This teal doesn't exist");
                 }

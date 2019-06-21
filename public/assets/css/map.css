@@ -107,6 +107,13 @@
     padding-top: 0.2em;
 }
 
+.infos p{
+    margin-top: 2em;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
 h2 {
     font-size: 1.3em;
 }
