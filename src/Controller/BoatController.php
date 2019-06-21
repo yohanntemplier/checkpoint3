@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\MapManagerService;
 
 /**
  * @Route("/boat")
@@ -39,22 +40,38 @@ class BoatController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function moveDirection(string $direction, BoatRepository $boatRepository, EntityManagerInterface $manager) : Response
+    public function moveDirection(string $direction, BoatRepository $boatRepository, EntityManagerInterface $manager, MapManagerService $mapManagerService) : Response
     {
         $boat = $boatRepository->findOneBy([]);
 
         switch ($direction) {
             case "N":
-                $boat->setCoordY($boat->getCoordY()-1);
+                if ($mapManagerService->tileExists($boat->getCoordX(), $boat->getCoordY() - 1)){
+                    $boat->setCoordY($boat->getCoordY() - 1);
+                } else {
+                    $this->addFlash('error ', "This teal doesn't exist");
+                }
                 break;
             case "S":
-                $boat->setCoordY($boat->getCoordY()+1);
+                if ($mapManagerService->tileExists($boat->getCoordX(), $boat->getCoordY() + 1)){
+                    $boat->setCoordY($boat->getCoordY() + 1);
+                } else {
+                    $this->addFlash('error ', "This teal doesn't exist");
+                }
                 break;
             case "E":
-                $boat->setCoordX($boat->getCoordX()+1);
+                if ($mapManagerService->tileExists($boat->getCoordX() + 1, $boat->getCoordY())){
+                    $boat->setCoordX($boat->getCoordX() - 1);
+                } else {
+                    $this->addFlash('error ', "This teal doesn't exist");
+                }
                 break;
             case "W":
-                $boat->setCoordX($boat->getCoordX()-1);
+                if ($mapManagerService->tileExists($boat->getCoordX() - 1, $boat->getCoordY())){
+                    $boat->setCoordX($boat->getCoordX() - 1);
+                } else {
+                    $this->addFlash('error ', "This teal doesn't exist");
+                }
                 break;
         }
         $manager->flush();
