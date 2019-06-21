@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Tile;
 use App\Repository\BoatRepository;
+use App\Entity\Boat;
+use App\Service\MapManagerService;
+use Doctrine\Common\Persistence\ObjectManager;
+
 
 class MapController extends AbstractController
 {
@@ -27,4 +31,25 @@ class MapController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/map/start/{id}", name="game_start")
+     * @param MapManagerService $mapManagerService
+     * @param ObjectManager $objectManager
+     * @param Boat $boat
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function start(MapManagerService $mapManagerService, ObjectManager $objectManager, Boat $boat)
+    {
+        $boat->setCoordX(0);
+        $boat->setCoordY(0);
+        $objectManager->persist($boat);
+        $tileWithTreasure = $mapManagerService->getRandomIsland();
+        $tileWithTreasure->setHasTreasure(1);
+
+
+        $objectManager->persist($tileWithTreasure);
+        $objectManager->flush();
+
+        return $this->redirectToRoute('map');
+    }
 }

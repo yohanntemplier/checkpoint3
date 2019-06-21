@@ -49,28 +49,40 @@ class BoatController extends AbstractController
                 if ($mapManagerService->tileExists($boat->getCoordX(), $boat->getCoordY() - 1)){
                     $boat->setCoordY($boat->getCoordY() - 1);
                 } else {
-                    $this->addFlash('error ', "This tile doesn't exist");
+                    $this->addFlash('danger', "This tile doesn't exist");
+                }
+                if ($mapManagerService->checkTreasure($boat)){
+                    $this->addFlash('success', 'You found the treasure of Jacky and Michel');
                 }
                 break;
             case "S":
                 if ($mapManagerService->tileExists($boat->getCoordX(), $boat->getCoordY() + 1)){
                     $boat->setCoordY($boat->getCoordY() + 1);
                 } else {
-                    $this->addFlash('error ', "This tile doesn't exist");
+                    $this->addFlash('danger', "This tile doesn't exist");
                 }
+                if ($mapManagerService->checkTreasure($boat)){
+                    $this->addFlash('success', 'You found the treasure of Jacky and Michel');
+                    }
                 break;
             case "E":
                 if ($mapManagerService->tileExists($boat->getCoordX() + 1, $boat->getCoordY())){
                     $boat->setCoordX($boat->getCoordX() + 1);
                 } else {
-                    $this->addFlash('error ', "This tile doesn't exist");
+                    $this->addFlash('danger', "This tile doesn't exist");
+                }
+                if ($mapManagerService->checkTreasure($boat)){
+                    $this->addFlash('success', 'You found the treasure of Jacky and Michel');
                 }
                 break;
             case "W":
                 if ($mapManagerService->tileExists($boat->getCoordX() - 1, $boat->getCoordY())){
                     $boat->setCoordX($boat->getCoordX() - 1);
                 } else {
-                    $this->addFlash('error ', "This tile doesn't exist");
+                    $this->addFlash('danger', "This tile doesn't exist");
+                }
+                if ($mapManagerService->checkTreasure($boat)){
+                    $this->addFlash('success', 'You found the treasure of Jacky and Michel');
                 }
                 break;
         }

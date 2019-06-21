@@ -6,7 +6,10 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Map</h1>
+        <div class="row">
+            <h1>Map</h1>
+            <a class="btn btn-primary offset-5" href="{{ path("game_start", {'id': boat.id}) }}">New Game</a>
+        </div>
         <div class="row">
             <div class="col-10">
                 <div class="map">
@@ -40,11 +43,10 @@
                 </div>
                 <div class="navigation">
                     <h2>Navigation</h2>
-                    <a class="btn btn-success col-5" href="{{ path('directionBoat', { 'direction' : "N"}) }}">North</a>
-                    <a class="btn btn-success col-5" href="{{ path('directionBoat', { 'direction' : "S"}) }}">South</a>
-                    <hr />
-                    <a class="btn btn-success col-5" href="{{ path('directionBoat', { 'direction' : "E"}) }}">East</a>
-                    <a class="btn btn-success col-5" href="{{ path('directionBoat', { 'direction' : "W"}) }}">West</a>
+                    <a class="btn btn-info col-5" href="{{ path('directionBoat', { 'direction' : "N"}) }}">North</a>
+                    <a class="btn btn-info col-5" href="{{ path('directionBoat', { 'direction' : "S"}) }}">South</a>
+                    <a class="btn btn-info col-5" href="{{ path('directionBoat', { 'direction' : "E"}) }}">East</a>
+                    <a class="btn btn-info col-5" href="{{ path('directionBoat', { 'direction' : "W"}) }}">West</a>
                 </div>
             </div>
         </div>

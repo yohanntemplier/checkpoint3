@@ -98,6 +98,10 @@
     padding-top: 0.2em;
 }
 
+.navigation a{
+    margin-top: 2em;
+}
+
 .infos {
     background-image: url('../images/map.jpg');
     width: 100%;
@@ -116,4 +120,8 @@
 
 h2 {
     font-size: 1.3em;
+}
+
+.row a{
+    text-align: center;
 }
