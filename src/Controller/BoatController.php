@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Boat;
 use App\Form\BoatType;
+use App\Entity\Boat;
 use App\Repository\BoatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
